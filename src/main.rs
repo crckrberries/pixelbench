@@ -14,7 +14,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
         tokio::spawn(async move {
             let mut start = Instant::now();
-            let mut buf = vec![0; 512];
+            let mut buf = vec![0; 4096];
             let mut bytes: f32 = 0.0; // bytes per second
             let mut totalbytes = 0.0; // bytes sent total
 

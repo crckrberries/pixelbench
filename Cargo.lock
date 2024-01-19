@@ -123,6 +123,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8afb450f006bf6385ca15ef45d71d2288452bc3683ce2e2cacc0d18e4be60b58"
 
 [[package]]
+name = "pixelbench"
+version = "0.1.0"
+dependencies = [
+ "tokio",
+]
+
+[[package]]
 name = "proc-macro2"
 version = "1.0.76"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -165,13 +172,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
-]
-
-[[package]]
-name = "tcpserver"
-version = "0.1.0"
-dependencies = [
- "tokio",
 ]
 
 [[package]]
