@@ -67,14 +67,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     println!(
                         "took {}ms to send {} megabytes",
                         start.elapsed().as_millis(),
-                        totalbytes / 1000.0
+                        totalbytes / 1000000.0
                     );
                     return;
                 }
 
                 let elapsed = start.elapsed(); // if the connection is not over by 1s, display megabits per second
                 if elapsed.as_millis() >= 1000 {
-                    println!("{} MBps", bytes / 1000.0);
+                    println!("{} MBps", bytes / 1000000.0);
                     bytes = 0.0;
                     start = Instant::now();
                 }
