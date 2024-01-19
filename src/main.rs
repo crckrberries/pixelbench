@@ -43,7 +43,6 @@ async fn main() -> Result<(), Box<dyn Error>> {
                         start.elapsed().as_millis(),
                         totalbytes / 1000.0
                     );
-                    totalbytes = 0.0;
                     return;
                 }
 
