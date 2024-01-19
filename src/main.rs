@@ -1,4 +1,6 @@
+use rand::{self, Rng};
 use std::error::Error;
+use std::fmt::Debug;
 use std::time::Instant;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpListener;
@@ -33,7 +35,31 @@ async fn main() -> Result<(), Box<dyn Error>> {
                             .await
                             .unwrap();
                     }
-                    _ => {}
+                    "HELP\n" => {
+                        socket.write_all("this isnt pixelflut lmao\n".as_bytes()).await.unwrap();
+                    }
+                    _ => {
+                        if str.starts_with("PX") && str.split(" ").count() == 3 {
+                            let mut ss = str.split(" ");
+                            let (x, y): (u32, u32) = (
+                                ss.nth(1).unwrap().parse().unwrap(),
+                                ss.next().unwrap()[..2].parse().unwrap(),
+                            );
+                            socket
+                                .write_all(
+                                    format!(
+                                        "PX {x} {y} {:02x}{:02x}{:02x}{:02x}\n",
+                                        rand::thread_rng().gen_range(0..255),
+                                        rand::thread_rng().gen_range(0..255),
+                                        rand::thread_rng().gen_range(0..255),
+                                        rand::thread_rng().gen_range(0..255)
+                                    )
+                                    .as_bytes(),
+                                )
+                                .await
+                                .unwrap();
+                        };
+                    }
                 }
 
                 if n == 0 {
