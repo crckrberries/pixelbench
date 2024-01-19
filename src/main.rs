@@ -28,7 +28,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 let str = String::from_utf8(buf).unwrap();
                 match str.as_str() {
                     "SIZE\n" => {
-                        socket.write_all("SIZE 1280 720\n".as_bytes()).await.unwrap();
+                        socket
+                            .write_all("SIZE 1280 720\n".as_bytes())
+                            .await
+                            .unwrap();
                     }
                     _ => {}
                 }
@@ -46,7 +49,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
                 let elapsed = start.elapsed(); // if the connection is not over by 1s, display megabits per second
                 if elapsed.as_millis() >= 1000 {
-                    println!("{} Mbps", bytes / 1000.0);
+                    println!("{} MBps", bytes / 1000.0);
                     bytes = 0.0;
                     start = Instant::now();
                 }
